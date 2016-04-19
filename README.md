@@ -10,7 +10,7 @@ ScenicNinja uses your current location to find great views nearby. It utilizes t
 
   - __Product Owner__: Joel Aguero
   - __Scrum Master__: Andrew Ho
-  - __Development Team Members__: Reina Mei, Laura Curley
+  - __Development Team Members__: Reina Mei, Laura Curley, Joel Aguero, Andrew Ho
 
 ## Table of Contents
 
