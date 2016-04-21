@@ -108,7 +108,7 @@ module.exports.searchGoogle = function(req, res) {
 
           var places = body.results;
           var counter = 0; //ensure server only sends back filteredBody if all places have been processed
-          for (var i = 0; i < places.length; i++) {
+          for (var i = 0; i < 5; i++) {
             var place = places[i];
             var placeid = place['place_id'];
 
@@ -128,14 +128,19 @@ module.exports.searchGoogle = function(req, res) {
                         filteredBody.places.push({
                           name: placeDetails.name,
                           address: placeDetails['formatted_address'],
-                          googlePlaceId: placeDetails['place_id']
+                          googlePlaceId: placeDetails['place_id'], 
+                          review: placeDetails.reviews,
+                          phone: placeDetails.formatted_phone_number,
+                          rating: placeDetails.rating,
+                          price: placeDetails.price_level,
+                          location: placeDetails.geometry.location
                         });
                         break;
                       }
                     }
                   }
                   counter++;
-                  if (counter === places.length) {
+                  if (counter === 5) {
                     res.json(filteredBody);
                   }
                 }); //end of layer 4 on 'end'
@@ -143,7 +148,7 @@ module.exports.searchGoogle = function(req, res) {
               .on('error', function(error) { //layer 3 on 'error'
                 //TODO: handle error
                 counter++;
-                if (counter === places.length) {
+                if (counter === 5) {
                   res.json(filteredBody);
                 } 
               }) //end of layer 3 on 'error'
@@ -158,5 +163,6 @@ module.exports.searchGoogle = function(req, res) {
       //TODO: handle error
     }); //end of layer 1 on 'error'
 };
+
 
 

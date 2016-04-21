@@ -32,6 +32,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+// this should be sending out the saved place to the database
 const mapDispatchToProps = (dispatch) => {
   return {
     onSaveClick: (place, user) => {
