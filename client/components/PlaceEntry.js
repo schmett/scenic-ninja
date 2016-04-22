@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import SkyLight from 'react-skylight';
 
 class PlaceEntry extends Component {
   constructor(props) {
@@ -35,9 +36,7 @@ class PlaceEntry extends Component {
         <div className='place-entry-favorite'>
           <span onClick={this.handleClick.bind(this)} className='icon-heart' aria-hidden='true'></span>
         </div>
-        <div className='place-more-info'>
-          <span className='icon-info' aria-hidden='true'> Show more info</span>
-        </div>
+        
       </div>
     );
   }
@@ -47,6 +46,17 @@ const mapStateToProps = (state) => {
   return {user: state.user};
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSaveClick: (place, user) => {
+      $.ajax({
+        url: '/api/places/saved',
+        method: 'POST',
+        data: {user: user, place: place}
+      });
+      dispatch(actions.savePlace(place));
+    }
+  };
+};
+
 export default connect(mapStateToProps)(PlaceEntry);
-
-
