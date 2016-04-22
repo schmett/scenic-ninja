@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import SkyLight from 'react-skylight';
+var {ToastContainer} = ReactToastr; 
+var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
 
 class PlaceEntry extends Component {
   constructor(props) {
@@ -9,8 +11,11 @@ class PlaceEntry extends Component {
   }
 
   handleClick(e) {
-    e.preventDefault;
-    this.props.onSaveClick(this.props.place, this.props.user);
+      e.preventDefault;
+      this.props.onSaveClick(this.props.place, this.props.user);
+      this.refs.container.success(
+        "You found a piece of heaven."
+      );
   }
 
   render() {
@@ -34,9 +39,12 @@ class PlaceEntry extends Component {
                 target='_blank'>Show Directions</a>
               </div>
           </div>
-          <div className='place-entry-favorite'>
-            <span onClick={this.handleClick.bind(this)} className='icon-heart' aria-hidden='true'></span>
-          </div>
+        <div className='place-entry-favorite'>
+          <ToastContainer ref="container"
+            toastMessageFactory={ToastMessageFactory}
+            className="toast-bottom-right" />
+          <span onClick={this.handleClick.bind(this)} className='icon-heart' aria-hidden='true'></span>
+        </div>
           
         </div>
         <div className='place-more-info animated fadeInUp'>
@@ -53,6 +61,7 @@ class PlaceEntry extends Component {
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {user: state.user};
