@@ -23,6 +23,17 @@ class PlaceEntry extends Component {
               // <p>Price Level: { this.props.place.price_level} </p>
               // <p>Reviews: { this.props.place.review.text } </p>
   render() {
+
+    var myBigGreenDialog = {
+      backgroundColor: '#FF5A3B',
+      color: '#ffffff',
+      width: '50%',
+      height: '400px',
+      marginTop: '-200px',
+      marginLeft: '-25%',
+      border: '10px solid #ffffff' 
+    };
+
     return (
       <div>
         <div className='place-entry animated fadeInUp'>
@@ -51,12 +62,10 @@ class PlaceEntry extends Component {
         <div className='place-more-info animated fadeInUp'>
           <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
         </div>
-        <SkyLight hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
-          <span>Phone Number: </span><br></br> 
+        <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
+          <span>Phone Number: { this.props.place.phone }</span><br></br><br></br>
 
-          <span>Rating: { this.props.place.rating }</span><br></br> 
-
-          <span>Reviews: </span> 
+          <span>Rating: { this.props.place.rating }</span><br></br><br></br>  
         </SkyLight>
       </div>
     );
