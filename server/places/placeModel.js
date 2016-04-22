@@ -20,7 +20,10 @@ var Place = db.define('Place',
     },
     image: {
       type: Sequelize.STRING
-    }
+    }, 
+    // rating: {
+    //   type: Sequelize.STRING
+    // }
   },
   {
     freezeTableName: true // Model tableName will be the same as the model name
