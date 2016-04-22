@@ -63,11 +63,9 @@ class PlaceEntry extends Component {
           <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
         </div>
         <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
-          <span>Phone Number: { this.props.place.formatted_phone_number }</span><br></br><br></br>
+          <span>Phone Number: { this.props.place.phone }</span><br></br><br></br>
 
-          <span>Rating: { this.props.place.rating }</span><br></br><br></br> 
-
-          <span>Reviews: { this.props.place.review.text }</span> 
+          <span>Rating: { this.props.place.rating }</span><br></br><br></br>  
         </SkyLight>
       </div>
     );
