@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import SkyLight from 'react-skylight';
-var {ToastContainer} = ReactToastr; 
+var ReactToastr = require("react-toastr-redux");
+var {ToastContainer} = ReactToastr;
 var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
 
 class PlaceEntry extends Component {
@@ -18,6 +19,9 @@ class PlaceEntry extends Component {
       );
   }
 
+              // <p>Rating: { this.props.place.rating }</p> 
+              // <p>Price Level: { this.props.place.price_level} </p>
+              // <p>Reviews: { this.props.place.review.text } </p>
   render() {
     return (
       <div>
@@ -25,9 +29,6 @@ class PlaceEntry extends Component {
           <div className='place-info' >
               <h4>{ this.props.place.name }</h4>
               <p>{ this.props.place.address }</p>
-              <p>Rating: { this.props.place.rating }</p> 
-              <p>Price Level: { this.props.place.price_level} </p>
-              <p>Reviews: { this.props.place.review.text } </p>
               <div>
                 <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
                 target='_blank'>View Images</a>
