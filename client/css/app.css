@@ -152,6 +152,10 @@ button:focus {
   width: 75%;
 }
 
+.place-more-info {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .place-info h4 {
   margin-bottom: 0px;
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import PlaceEntry from './PlaceEntry';
 import actions from '../actions/index.js';
+import SkyLight from 'react-skylight';
 import $ from 'jquery';
 
 class PlaceContainer extends Component {
@@ -18,6 +19,16 @@ class PlaceContainer extends Component {
           { this.props.places.map((place) => (
             <div>
               <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place }></PlaceEntry>
+              <div className='place-more-info animated fadeInUp'>
+                <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
+              </div>
+              <SkyLight hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
+                <span>Phone Number: </span><br></br> 
+
+                <span>Rating: </span><br></br> 
+
+                <span>Reviews: </span> 
+              </SkyLight>
             </div>
           ))}
         </div>
@@ -32,7 +43,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// this should be sending out the saved place to the database
 const mapDispatchToProps = (dispatch) => {
   return {
     onSaveClick: (place, user) => {
