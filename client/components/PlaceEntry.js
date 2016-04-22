@@ -31,7 +31,8 @@ class PlaceEntry extends Component {
       height: '400px',
       marginTop: '-200px',
       marginLeft: '-25%',
-      border: '10px solid #ffffff' 
+      border: '10px solid #ffffff',
+      overflow: scroll 
     };
 
     return (
@@ -63,9 +64,14 @@ class PlaceEntry extends Component {
           <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
         </div>
         <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
-          <span>Phone Number: { this.props.place.phone }</span><br></br><br></br>
+          <span>Phone Number: { this.props.place.phone }</span><br></br>
+          <span>Rating: { this.props.place.rating }</span><br></br>  
+          <span>Website: <a href={ this.props.place.website } target='_blank'>{ this.props.place.website }</a></span><br></br><br></br>
+          <span>Reviews:</span><br></br>
+          <span>{this.props.place.review[0].author_name} - {(this.props.place.review[0].text).substr(0, 100)}...</span><br></br><br></br>
+          <span>{this.props.place.review[1].author_name} - {(this.props.place.review[1].text).substr(0, 100)}...</span><br></br><br></br>
 
-          <span>Rating: { this.props.place.rating }</span><br></br><br></br>  
+          <img src={this.props.place.icon}/>
         </SkyLight>
       </div>
     );

@@ -133,7 +133,9 @@ module.exports.searchGoogle = function(req, res) {
                           phone: placeDetails.formatted_phone_number,
                           rating: placeDetails.rating,
                           price: placeDetails.price_level,
-                          location: placeDetails.geometry.location
+                          location: placeDetails.geometry.location,
+                          website: placeDetails.website,
+                          icon: placeDetails.icon
                         });
                         break;
                       }
