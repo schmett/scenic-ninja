@@ -19,16 +19,6 @@ class PlaceContainer extends Component {
           { this.props.places.map((place) => (
             <div>
               <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place }></PlaceEntry>
-              <div className='place-more-info animated fadeInUp'>
-                <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
-              </div>
-              <SkyLight hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
-                <span>Phone Number: </span><br></br> 
-
-                <span>Rating: </span><br></br> 
-
-                <span>Reviews: </span> 
-              </SkyLight>
             </div>
           ))}
         </div>
