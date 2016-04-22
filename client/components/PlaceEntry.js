@@ -55,5 +55,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(PlaceEntry);
 
-
-// <span onClick={this.handleClick.bind(this)} className='icon-heart' aria-hidden='true'></span>
