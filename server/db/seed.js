@@ -1,6 +1,6 @@
 var sampleData = [{
   name: 'Metreon Rooftop Garden',
-  address: '411 Behind Target'
+  address: '411 Behind Target',
 }, {
   name: 'Parc55 Hotel Roof',
   address: '0 Just over there'
