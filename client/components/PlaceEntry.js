@@ -20,6 +20,16 @@ class PlaceEntry extends Component {
       this.refs.complexDialog.show();
   }
 
+    var heaven = {
+      backgroundColor: '#FF5A3B',
+      color: '#ffffff',
+      width: '25%',
+      height: '50px',
+      marginTop: '-200px',
+      marginLeft: '-25%',
+      border: '10px solid #ffffff' 
+    };
+
   render() {
     return (
       <div>
@@ -40,7 +50,7 @@ class PlaceEntry extends Component {
           </div>      
         </div>
 
-        <SkyLight hideOnOverlayClicked ref="complexDialog">
+        <SkyLight dialogStyles = {heaven} hideOnOverlayClicked ref="complexDialog">
           <span>Yay, you found a piece of heaven.</span>
         </SkyLight>
 
@@ -67,7 +77,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(PlaceEntry);
-  
+
+ 
 // after Show Directions      
 
   //  <div className='place-entry-favorite'>
