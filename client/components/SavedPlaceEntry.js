@@ -10,9 +10,6 @@ var SavedPlaceEntry = (props) => (
       <span className='place-entry-link-divider'>&middot;</span>
       <a className='saved-place-entry-link' href={'//www.google.com/search?q=' + props.savedPlace.name + ' ' + props.savedPlace.address}
       target='_blank'>Find on Google</a>
-      <span className='place-entry-link-divider'>&middot;</span>
-      <a className='place-entry-link' href={'https://maps.google.com?saddr=Current+Location&daddr=' + props.savedPlace.address}
-      target='_blank'>Show Directions</a>
     </div>
   </div>
 );
