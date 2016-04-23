@@ -20,17 +20,31 @@ class PlaceEntry extends Component {
       this.refs.complexDialog.show();
   }
 
-    var heaven = {
-      backgroundColor: '#FF5A3B',
-      color: '#ffffff',
-      width: '25%',
-      height: '50px',
-      marginTop: '-200px',
-      marginLeft: '-25%',
-      border: '10px solid #ffffff' 
-    };
 
   render() {
+
+    var heaven = {
+      backgroundColor: '#ffffff',
+      color: '#FF5A3B',
+      width: '30%',
+      height: '100px',
+      marginTop: '-100px',
+      marginLeft: '-25%',
+      border: '10px solid #FF5A3B' 
+    };
+
+    var styleHeart = {
+      width: '50%', 
+      float: 'left', 
+      height: '20%'
+    }
+
+    var styleInfo = {
+      width: '50%', 
+      float: 'right', 
+      height: '20%'
+    }
+
     return (
       <div>
         <div className='place-entry animated fadeInUp'>
@@ -50,15 +64,16 @@ class PlaceEntry extends Component {
           </div>      
         </div>
 
-        <SkyLight dialogStyles = {heaven} hideOnOverlayClicked ref="complexDialog">
-          <span>Yay, you found a piece of heaven.</span>
-        </SkyLight>
-
-        <div className = 'animated fadeInUp'>
+        <div className = 'animated fadeInUp' style = {styleHeart}>
           <span onClick = {this.handleClick.bind(this)} className = 'icon-heart' aria-hidden='true'></span> 
         </div>
 
-        <div className='place-more-info animated fadeInUp'>
+        <SkyLight dialogStyles = {heaven} hideOnOverlayClicked ref="complexDialog" style = {styleInfo}>
+          <span>Yay, you found a piece of heaven.</span>
+        </SkyLight>
+
+
+        <div className='place-more-info animated fadeInUp' display="inline-block" width="25%" float="right">
           <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
         </div>
 
