@@ -122,7 +122,7 @@ module.exports.searchGoogle = function(req, res) {
                   var placeDetails = body.result;
                   if (placeDetails.opening_hours === undefined) {
                     placeDetails.opening_hours = {
-                      open_now: false,
+                      open_now: 'N/A',
                         periods:
                          [ { close: [Object], open: [Object] },
                            { close: [Object], open: [Object] },
@@ -141,6 +141,13 @@ module.exports.searchGoogle = function(req, res) {
                            'Sunday: N/A' ]
                     }
                   };
+                  if (placeDetails.opening_hours.open_now === 'N/A') {
+                    placeDetails.opening_hours.open_now = 'N/A';
+                  } else if (placeDetails.opening_hours.open_now){
+                    placeDetails.opening_hours.open_now = 'Yes';
+                  } else {
+                    placeDetails.opening_hours.open_now = 'No';
+                  }
                   var reviews = placeDetails.reviews;
                   if (reviews) {
                     for (var j = 0; j < reviews.length; j++) {
@@ -160,13 +167,13 @@ module.exports.searchGoogle = function(req, res) {
                           location: placeDetails.geometry.location,
                           website: placeDetails.website,
                           icon: placeDetails.icon,
-                          hours: placeDetails.opening_hours
+                          hours: placeDetails.opening_hours,
+                          vicinity: placeDetails.vicinity
                         });
                         break;
                       }
                     }
                   }
-                  console.log(placeDetails.name, placeDetails.opening_hours);
                   counter++;
                   if (counter === 5) {
                     res.json(filteredBody);

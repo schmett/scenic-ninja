@@ -44,6 +44,21 @@ header .black, .black {
   float: right;
 }
 
+.location-hours {
+  float: right;
+  margin-right: 7%;
+}
+
+.location-site {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-reviews {
+  clear: both;
+}
+
 header .ninja {
   max-height: 150px;
   opacity: .8;
