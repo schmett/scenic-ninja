@@ -14,4 +14,7 @@ module.exports = {
     return { type: types.SAVE_FRIEND, friend };
   }
 
+  deletePlace: function(friend) {
+    return { type: types.DELETE_PLACE, place };
+  }
 };
