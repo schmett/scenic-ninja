@@ -42,6 +42,7 @@ module.exports.saveOne = function(req, res) {
   });
 };
 
+
 module.exports.deleteOne = function(req, res) {
   var user = req.body.user;
   var place = req.body.place;
@@ -50,15 +51,23 @@ module.exports.deleteOne = function(req, res) {
     where: user
   })
   .then(function(foundUser) {
+    Place.deleteOne({where: place})
+    .spread(function(foundOrCreatedPlace) {
+      foundUser.deletePlace(foundOrCreatedPlace)
+      .then(function() {
+        res.json(foundOrCreatedPlace);
+      });
+    }); 
     // Place.findOne({
     //   where: place
     // })
     // .then(function(foundPlace) {
     //   res.json(foundPlace);
     // });
-    res.json(user);
+    // res.json(user);
 
   });
+};
 
   // User.findOne({
   //   where: user
