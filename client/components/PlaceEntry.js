@@ -64,8 +64,16 @@ class PlaceEntry extends Component {
           <span onClick={() => this.refs.simpleDialog.show()} className='icon-info' aria-hidden='true'> More info</span>
         </div>
         <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
-          <span>Phone Number: { this.props.place.phone }</span><br></br>
-          <span>Rating: { this.props.place.rating }</span><br></br>   
+          <span>Phone Number: { this.props.place.phone }</span><img className="location-icon" src={this.props.place.icon}/><br></br>
+          <span>Rating: { this.props.place.rating }</span><br></br>
+          <span>Hours:</span><br></br>   
+          <span>  { this.props.place.hours.weekday_text[0] }</span><br></br>
+          <span>  { this.props.place.hours.weekday_text[1] }</span><br></br>
+          <span>  { this.props.place.hours.weekday_text[2] }</span><br></br>
+          <span>  { this.props.place.hours.weekday_text[3] }</span><br></br>
+          <span>  { this.props.place.hours.weekday_text[4] }</span><br></br>
+          <span>  { this.props.place.hours.weekday_text[5] }</span><br></br>
+          <span>  { this.props.place.hours.weekday_text[6] }</span><br></br>
           <span>Website: <a href={ this.props.place.website } target='_blank'>{ this.props.place.website }</a></span><br></br><br></br>
           <span>Reviews:</span><br></br>
           <span>{this.props.place.review[0].author_name} - {(this.props.place.review[0].text).substr(0, 145)}<a href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
@@ -74,9 +82,6 @@ class PlaceEntry extends Component {
                 target='_blank'>more...</a></span><br></br><br></br>
           <span>{this.props.place.review[2].author_name} - {(this.props.place.review[2].text).substr(0, 145)}<span><a href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
                 target='_blank'>more...</a></span></span><br></br><br></br>
-
-
-          <img src={this.props.place.icon}/>
         </SkyLight>
       </div>
     );
