@@ -15,7 +15,7 @@ class PlaceEntry extends Component {
       e.preventDefault;
       this.props.onSaveClick(this.props.place, this.props.user);
       this.refs.container.success(
-        "Added!"
+        "Added to your places!"
       );
       // this.refs.complexDialog.show();
   }
@@ -61,7 +61,7 @@ class PlaceEntry extends Component {
     }
 
     var toast = {
-      width: '20%', 
+      width: '40%', 
       float: 'right',
       // paddingLeft: '20px',   
       height: '20%', 

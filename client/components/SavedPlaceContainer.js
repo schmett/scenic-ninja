@@ -50,4 +50,4 @@ SavedPlaceContainer.propTypes = {
 
 export default connect(
   mapStateToProps
-)(SavedPlaceContainer);
+  )(SavedPlaceContainer);
