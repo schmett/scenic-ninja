@@ -59,7 +59,7 @@ passport.use(new GoogleStrategy.OAuth2Strategy({
     for (var i = 0; i < response.items.length; i++){
       console.log(response.items[i]);
       Friend.create({ googleUserId: profile.id, googleFriendId: response.items[i].id, name: response.items[i].name, url: response.items[i].url,image: response.items[i].image.url}).then(function(friend) {
-        console.log('Create',friend);
+        console.log('Create');
       })
     }
   });

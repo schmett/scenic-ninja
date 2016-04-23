@@ -14,13 +14,15 @@ module.exports = function(req, res) {
   // Initialize user state if user is logged in
   var user = {};
   var savedPlaces = [];
+  var saveFriend = [];
 
   var sendInitialState = function() {
     // Create a new Redux store instance
     const store = createStore(rootReducer, {
       places: [],
       savedPlaces: savedPlaces,
-      user: user
+      user: user,
+      saveFriend: saveFriend
     });
 
     // Render the component to a string
@@ -45,6 +47,19 @@ module.exports = function(req, res) {
       lastName: req.session.passport.user.name.familyName || null
       // avatarUrl: req.session.passport.user.photos[0].value || null,
     };
+
+    User.findOne({
+        where: user
+      })
+      .then(function(foundUser) {
+        console.log('foundUser', foundUser);
+        return foundUser.getFriends();
+      })
+      .then(function(foundFriends) {
+        console.log('foundFriends',foundFriends);
+        saveFriend = foundFriends;
+      });
+
 
     User.findOne({
         where: user
