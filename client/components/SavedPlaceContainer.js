@@ -53,6 +53,9 @@ export default connect(
 )(SavedPlaceContainer);
 
 
+
+
+
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import SavedPlaceEntry from './SavedPlaceEntry.js';
