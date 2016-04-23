@@ -65,7 +65,8 @@ class PlaceEntry extends Component {
         </div>
         <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Additional Information">
           <span>Phone Number: { this.props.place.phone }</span><br></br>
-          <span>Rating: { this.props.place.rating }</span><br></br>   
+          <span>Rating: { this.props.place.rating }</span><br></br>
+          <span>Hours: { this.props.place.hours.weekday_text[0] }</span><br></br>   
           <span>Website: <a href={ this.props.place.website } target='_blank'>{ this.props.place.website }</a></span><br></br><br></br>
           <span>Reviews:</span><br></br>
           <span>{this.props.place.review[0].author_name} - {(this.props.place.review[0].text).substr(0, 145)}<a href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}

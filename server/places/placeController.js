@@ -120,11 +120,35 @@ module.exports.searchGoogle = function(req, res) {
                 }).on('end', function() { //layer 4 on 'end'
                   body = JSON.parse(Buffer.concat(body).toString());
                   var placeDetails = body.result;
+                  if (placeDetails.opening_hours === undefined) {
+                    placeDetails.opening_hours = {
+                      open_now: false,
+                        periods:
+                         [ { close: [Object], open: [Object] },
+                           { close: [Object], open: [Object] },
+                           { close: [Object], open: [Object] },
+                           { close: [Object], open: [Object] },
+                           { close: [Object], open: [Object] },
+                           { close: [Object], open: [Object] },
+                           { close: [Object], open: [Object] } ],
+                        weekday_text:
+                         [ 'Monday: 11:00 AM – 2:30 PM',
+                           'Tuesday: 11:00 AM – 2:30 PM',
+                           'Wednesday: 11:00 AM – 2:30 PM',
+                           'Thursday: 11:00 AM – 2:30 PM',
+                           'Friday: 11:00 AM – 2:30 PM',
+                           'Saturday: 10:00 AM – 2:30 PM',
+                           'Sunday: 10:00 AM – 2:30 PM' ]
+                    }
+                  };
                   var reviews = placeDetails.reviews;
                   if (reviews) {
                     for (var j = 0; j < reviews.length; j++) {
                       var review = reviews[j];
                       if (review.text.match(regex1) || review.text.match(regex2)) { //TODO: improve regex matching
+                        // if (placeDetails.opening_hours === undefined) {
+                        //   placeDetails.opening_hours = 'N/A';
+                        // } 
                         filteredBody.places.push({
                           name: placeDetails.name,
                           address: placeDetails['formatted_address'],
@@ -135,12 +159,14 @@ module.exports.searchGoogle = function(req, res) {
                           price: placeDetails.price_level,
                           location: placeDetails.geometry.location,
                           website: placeDetails.website,
-                          icon: placeDetails.icon
+                          icon: placeDetails.icon,
+                          hours: placeDetails.opening_hours
                         });
                         break;
                       }
                     }
                   }
+                  console.log(placeDetails.name, placeDetails.opening_hours);
                   counter++;
                   if (counter === 5) {
                     res.json(filteredBody);
