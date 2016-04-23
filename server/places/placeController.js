@@ -132,13 +132,13 @@ module.exports.searchGoogle = function(req, res) {
                            { close: [Object], open: [Object] },
                            { close: [Object], open: [Object] } ],
                         weekday_text:
-                         [ 'Monday: 11:00 AM – 2:30 PM',
-                           'Tuesday: 11:00 AM – 2:30 PM',
-                           'Wednesday: 11:00 AM – 2:30 PM',
-                           'Thursday: 11:00 AM – 2:30 PM',
-                           'Friday: 11:00 AM – 2:30 PM',
-                           'Saturday: 10:00 AM – 2:30 PM',
-                           'Sunday: 10:00 AM – 2:30 PM' ]
+                         [ 'Monday: N/A',
+                           'Tuesday: N/A',
+                           'Wednesday: N/A',
+                           'Thursday: N/A',
+                           'Friday: N/A',
+                           'Saturday: N/A',
+                           'Sunday: N/A' ]
                     }
                   };
                   var reviews = placeDetails.reviews;

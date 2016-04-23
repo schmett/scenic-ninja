@@ -40,6 +40,10 @@ header .black, .black {
   max-width: 220px;
 }
 
+.location-icon {
+  float: right;
+}
+
 header .ninja {
   max-height: 150px;
   opacity: .8;
