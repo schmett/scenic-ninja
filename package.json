@@ -35,6 +35,8 @@
     "eslint-config-hackreactor": "github:hackreactor-labs/eslint-config-hackreactor",
     "express": "^4.4.5",
     "express-session": "^1.13.0",
+    "google-contacts": "^0.1.2",
+    "google-contacts-api": "^1.0.3",
     "jquery": "^2.2.3",
     "mysql": "^2.10.2",
     "nodemon": "^1.2.1",

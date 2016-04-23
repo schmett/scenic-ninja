@@ -2,6 +2,12 @@ var googleKeys = require(__dirname + '/../config/googleplus');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth');
 var User = require(__dirname + '/../users/userModel');
+var Friend = require(__dirname + '/../friends/friendModel');
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
+var oauth2Client = new OAuth2(googleKeys.CLIENT_ID, googleKeys.CLIENT_SECRET, '/');
+var plus = google.plus({version: 'v1', auth: oauth2Client});
+google.options({ auth: oauth2Client });
 
 // Middleware for checking whether the user is logged in
 module.exports.checkAuth = function (req, res, next) {
@@ -14,7 +20,8 @@ module.exports.checkAuth = function (req, res, next) {
 };
 
 module.exports.handleGoogleLogin = passport.authenticate('google', {
-  scope: ['https://www.googleapis.com/auth/plus.login']
+  scope: ['https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profiles.read'
+  ]
 });
 
 module.exports.authenticateGoogleLogin = passport.authenticate('google', {
@@ -44,6 +51,19 @@ passport.use(new GoogleStrategy.OAuth2Strategy({
   callbackURL: '/auth/google/callback'
 }, function(accessToken, refreshToken, profile, done) {
   // Create a user if it is a new user, otherwise just get the user from the DB
+   oauth2Client.setCredentials({
+    access_token: accessToken
+  });
+
+  plus.people.list({collection:"visible", userId: 'me', auth: oauth2Client }, function(err, response) {
+    for (var i = 0; i < response.items.length; i++){
+      console.log(response.items[i]);
+      Friend.create({ googleUserId: profile.id, googleFriendId: response.items[i].id, name: response.items[i].name, url: response.items[i].url,image: response.items[i].image.url}).then(function(friend) {
+        console.log('Create',friend);
+      })
+    }
+  });
+
   User
     .findOrCreate({
       where: {
