@@ -78,7 +78,8 @@ class PlaceEntry extends Component {
             <span>Rating: { this.props.place.rating }</span><br></br>
             <span className="location-site">Website: <a href={ this.props.place.website } target='_blank'>{ this.props.place.website }</a></span><br></br>
             <span>Open Now: { this.props.place.hours.open_now }</span><br></br>
-            <span>Location: { this.props.place.vicinity }</span>
+            <span>Location: { this.props.place.vicinity }</span><br></br>
+            <span>Price Level: { this.props.place.price }</span>
           </div>
           <div className="user-reviews">
             <br></br><br></br>
