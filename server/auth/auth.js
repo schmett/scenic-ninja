@@ -55,15 +55,6 @@ passport.use(new GoogleStrategy.OAuth2Strategy({
     access_token: accessToken
   });
 
-  plus.people.list({collection:"visible", userId: 'me', auth: oauth2Client }, function(err, response) {
-    for (var i = 0; i < response.items.length; i++){
-      console.log(response.items[i]);
-      Friend.create({ googleUserId: profile.id, googleFriendId: response.items[i].id, name: response.items[i].name, url: response.items[i].url,image: response.items[i].image.url}).then(function(friend) {
-        console.log('Create');
-      })
-    }
-  });
-
   User
     .findOrCreate({
       where: {
@@ -90,5 +81,49 @@ passport.use(new GoogleStrategy.OAuth2Strategy({
        }
        created: true*/
     });
+
+    plus.people.list({collection:"visible", userId: 'me', auth: oauth2Client }, function(err, response) {
+      console.log('Responde Google+', response);
+      for (var i = 0; i < 10; i++){
+        //console.log(response.items[i]);
+        // User.findOne({
+        //   where: {
+        //     googleUserId: profile.id
+        //     }
+        //   })
+        // .then(function(foundUser) {
+        //   console.log('User++-------++');
+        //   // Friend.findOrCreate({
+        //   //   where: {
+        //   //     googleFriendId:response.items[i].id
+        //   //   }, 
+        //   //   defaults:{
+        //   //     googleUserId: profile.id, 
+        //   //     googleFriendId: response.items[i].id, 
+        //   //     name: response.items[i].name, 
+        //   //     url: response.items[i].url,
+        //   //     image: response.items[i].image.url
+        //   //   }
+        //   // })
+          
+        //   //.spread(function(foundOrCreatedFriend) {
+        //   console.log('Create', response.items[0]);
+        //   Friend.create({ googleUserId: profile.id, googleFriendId: response.items[0].id, name: response.items[0].name, url: response.items[0].url,image: response.items[0].image.url}).then(function(friend) {
+        //     console.log('Create');
+        //     // console.log('foundOrCreatedPlace--========---',friend);
+        //     foundUser.addFriend(friend);
+        //     });
+        //   });
+        // // });
+
+        Friend.create({ googleUserId: profile.id, googleFriendId: response.items[0].id, name: response.items[i].displayName, url: response.items[i].url,image: response.items[i].image.url}).then(function(friend) {
+          console.log('Friend Saved');
+        })
+      }
+    });
+
+
+
+
   return done(null, profile);
 }));

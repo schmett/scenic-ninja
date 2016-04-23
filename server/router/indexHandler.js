@@ -6,6 +6,7 @@ import rootReducer from '../../client/reducers/index';
 import App from '../../client/components/App';
 import renderFullPage from '../views/index';
 var User = require(__dirname + '/../users/userModel.js');
+var Friend = require(__dirname + '/../friends/friendModel.js');
 
 
 // Handler for rendering the index page with user data, if available
@@ -48,17 +49,30 @@ module.exports = function(req, res) {
       // avatarUrl: req.session.passport.user.photos[0].value || null,
     };
 
-    User.findOne({
-        where: user
-      })
-      .then(function(foundUser) {
-        console.log('foundUser', foundUser);
-        return foundUser.getFriends();
-      })
-      .then(function(foundFriends) {
+
+    console.log('Aut user',user);
+    Friend.findAll({
+      where: {
+        google_user_id: user.googleUserId
+      }
+    })
+    .then(function(foundFriends) {
         console.log('foundFriends',foundFriends);
         saveFriend = foundFriends;
       });
+
+    // User.findOne({
+    //     where: user
+    //   })
+    //   .then(function(foundUser) {
+    //     console.log('foundUser', foundUser);
+    //     return foundUser.getFriends();
+    //     // Friend
+    //   })
+    //   .then(function(foundFriends) {
+    //     console.log('foundFriends',foundFriends);
+    //     saveFriend = foundFriends;
+    //   });
 
 
     User.findOne({

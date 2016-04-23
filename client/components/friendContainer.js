@@ -16,7 +16,7 @@ class FriendContainer extends Component {
       // there are no saved places, so show an empty state
       return (
         <div className='col-4-12 saved-places'>
-          <h3>Your Saved Places</h3>
+          <h3>Your Friends</h3>
           <div className='no-saved-places'>
             <p>
               If you like a place, click the &hearts; to save it for later.
@@ -29,7 +29,7 @@ class FriendContainer extends Component {
       // there are saved places, so display them
       return (
         <div className='col-4-12 saved-places'>
-          <h3>Your Saved Places</h3>
+          <h3>Your Friends</h3>
           { this.props.saveFriend.map((savedFriend) => (
             <div>
               <FriendEntry savedFriend={savedFriend} />

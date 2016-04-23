@@ -23,13 +23,17 @@ module.exports.getAllSaved = function(req, res) {
 module.exports.saveOne = function(req, res) {
   var user = req.body.user;
   var place = req.body.place;
+  console.log('Request user+++++++++++++++++++++',user);
+  console.log('Request place====================',place);
 
   User.findOne({
     where: user
   })
   .then(function(foundUser) {
+    console.log('User++++', foundUser);
     Place.findOrCreate({where: place})
     .spread(function(foundOrCreatedPlace) {
+          console.log('foundOrCreatedPlace-----',foundOrCreatedPlace);
       foundUser.addPlace(foundOrCreatedPlace)
       .then(function() {
         res.json(foundOrCreatedPlace);
@@ -172,7 +176,7 @@ module.exports.searchGoogle = function(req, res) {
                           vicinity: placeDetails.vicinity
                         });
                         break;
-                      // }
+                      }
                     }
                   }
                   counter++;
