@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var Friend = require(__dirname + '/friendModel.js');
+var User = require(__dirname + '/../users/userModel.js');
 
 
 module.exports.getAllSaved = function(req, res) {
@@ -9,10 +10,10 @@ module.exports.getAllSaved = function(req, res) {
     where: user
   })
   .then(function(foundUser) {
-    return foundUser.getPlaces();
+    return foundUser.getFriend();
   })
-  .then(function(foundPlaces) {
-    res.json(foundPlaces);
+  .then(function(foundFriend) {
+    res.json(foundFriend);
   });
 };
 

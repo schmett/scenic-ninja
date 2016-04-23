@@ -4,6 +4,7 @@ import actions from '../actions/index.js';
 
 import Header from './Header';
 import PlaceContainer from './PlaceContainer';
+import FriendContainer from './friendContainer';
 import SavedPlaceContainer from './SavedPlaceContainer';
 import searchGooglePlaces from '../utils/searchGooglePlaces.js';
 import $ from 'jquery';
@@ -16,6 +17,7 @@ class App extends Component {
         <div className='grid'>
           <PlaceContainer/>
           <SavedPlaceContainer/>
+          <FriendContainer/>
         </div>
       </div>
     );

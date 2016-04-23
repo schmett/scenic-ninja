@@ -23,13 +23,17 @@ module.exports.getAllSaved = function(req, res) {
 module.exports.saveOne = function(req, res) {
   var user = req.body.user;
   var place = req.body.place;
+  console.log('Request user+++++++++++++++++++++',user);
+  console.log('Request place====================',place);
 
   User.findOne({
     where: user
   })
   .then(function(foundUser) {
+    console.log('User++++', foundUser);
     Place.findOrCreate({where: place})
     .spread(function(foundOrCreatedPlace) {
+          console.log('foundOrCreatedPlace-----',foundOrCreatedPlace);
       foundUser.addPlace(foundOrCreatedPlace)
       .then(function() {
         res.json(foundOrCreatedPlace);
@@ -105,7 +109,7 @@ module.exports.searchGoogle = function(req, res) {
         var filteredBody = {};
         filteredBody.places = [];
         if (body.results && body.results.length > 0) {
-
+          console.log('Body Place ',body.results);
           var places = body.results;
           var counter = 0; //ensure server only sends back filteredBody if all places have been processed
           for (var i = 0; i < 5; i++) {
@@ -149,6 +153,7 @@ module.exports.searchGoogle = function(req, res) {
                     placeDetails.opening_hours.open_now = 'No';
                   }
                   var reviews = placeDetails.reviews;
+                  console.log('Reviews ',reviews);
                   if (reviews) {
                     for (var j = 0; j < reviews.length; j++) {
                       var review = reviews[j];
@@ -175,7 +180,7 @@ module.exports.searchGoogle = function(req, res) {
                     }
                   }
                   counter++;
-                  if (counter === 5) {
+                  if (counter === 3) {
                     res.json(filteredBody);
                   }
                 }); //end of layer 4 on 'end'

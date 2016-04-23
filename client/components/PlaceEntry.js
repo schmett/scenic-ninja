@@ -17,6 +17,21 @@ class PlaceEntry extends Component {
       this.refs.container.success(
         "Added to your places!"
       );
+//       =======
+      
+      
+//         this.refs.container.success(
+//           "You found a piece of heaven.",
+//           "", {
+//           timeOut: 1000,
+//           extendedTimeOut: 1000
+//         });
+      
+
+//       // this.refs.container.success(
+//       //   "You found a piece of heaven."
+//       // );
+// >>>>>>> Google plus Contacts React Uncomplete
       // this.refs.complexDialog.show();
   }
   // <p>Rating: { this.props.place.rating }</p> 

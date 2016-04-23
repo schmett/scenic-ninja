@@ -8,6 +8,10 @@ module.exports = {
 
   savePlace: function(place) {
     return { type: types.SAVE_PLACE, place };
+  },
+
+  saveFriend: function(friend) {
+    return { type: types.SAVE_FRIEND, friend };
   }
 
 };

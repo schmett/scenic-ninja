@@ -2,6 +2,7 @@ var path = require('path');
 var auth = require(__dirname + '/../auth/auth');
 var placeController = require(__dirname + '/../places/placeController');
 var userController = require(__dirname + '/../users/userController');
+var friendController = require(__dirname + '/../friends/friendController');
 var renderIndex = require(__dirname + '/indexHandler');
 
 
@@ -14,6 +15,8 @@ module.exports = function(app, express) {
   app.post('/api/places/saved', auth.checkAuth, placeController.saveOne);
   app.get('/api/places/saved', auth.checkAuth, placeController.getAllSaved);
   app.delete('/api/places/saved', auth.checkAuth, placeController.deleteOne);
+
+  app.get('/api/friend/saved', auth.checkAuth, friendController.getAllSaved);
 
   app.post('/api/users', userController.saveOne);
 

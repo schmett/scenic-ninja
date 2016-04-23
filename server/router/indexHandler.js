@@ -6,6 +6,7 @@ import rootReducer from '../../client/reducers/index';
 import App from '../../client/components/App';
 import renderFullPage from '../views/index';
 var User = require(__dirname + '/../users/userModel.js');
+var Friend = require(__dirname + '/../friends/friendModel.js');
 
 
 // Handler for rendering the index page with user data, if available
@@ -14,13 +15,15 @@ module.exports = function(req, res) {
   // Initialize user state if user is logged in
   var user = {};
   var savedPlaces = [];
+  var saveFriend = [];
 
   var sendInitialState = function() {
     // Create a new Redux store instance
     const store = createStore(rootReducer, {
       places: [],
       savedPlaces: savedPlaces,
-      user: user
+      user: user,
+      saveFriend: saveFriend
     });
 
     // Render the component to a string
@@ -45,6 +48,32 @@ module.exports = function(req, res) {
       lastName: req.session.passport.user.name.familyName || null
       // avatarUrl: req.session.passport.user.photos[0].value || null,
     };
+
+
+    console.log('Aut user',user);
+    Friend.findAll({
+      where: {
+        google_user_id: user.googleUserId
+      }
+    })
+    .then(function(foundFriends) {
+        console.log('foundFriends',foundFriends);
+        saveFriend = foundFriends;
+      });
+
+    // User.findOne({
+    //     where: user
+    //   })
+    //   .then(function(foundUser) {
+    //     console.log('foundUser', foundUser);
+    //     return foundUser.getFriends();
+    //     // Friend
+    //   })
+    //   .then(function(foundFriends) {
+    //     console.log('foundFriends',foundFriends);
+    //     saveFriend = foundFriends;
+    //   });
+
 
     User.findOne({
         where: user
