@@ -153,9 +153,9 @@ module.exports.searchGoogle = function(req, res) {
                     for (var j = 0; j < reviews.length; j++) {
                       var review = reviews[j];
                       if (review.text.match(regex1) || review.text.match(regex2)) { //TODO: improve regex matching
-                        // if (placeDetails.opening_hours === undefined) {
-                        //   placeDetails.opening_hours = 'N/A';
-                        // } 
+                        if (placeDetails.opening_hours === undefined) {
+                          placeDetails.opening_hours = 'N/A';
+                        } 
                         filteredBody.places.push({
                           name: placeDetails.name,
                           address: placeDetails['formatted_address'],
